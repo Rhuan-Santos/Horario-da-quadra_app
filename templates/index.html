@@ -1,184 +1,238 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Horários da Quadra</title>
-<style>
-    body {
-        font-family: Arial;
-        background: #eee;
-        padding: 30px;
-    }
 
-    h1, p {
-        text-align: center;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .topo {
-        background: #176b87;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        border-radius: 8px;
-    }
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #eaf2ff;
+            color: #142d55;
+        }
 
-    .botao {
-        display: block;
-        width: 150px;
-        margin: 20px auto;
-        padding: 10px;
-        background: #176b87;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 5px;
-    }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
 
-    .resumo {
-        text-align: center;
-        margin: 20px;
-        font-size: 18px;
-    }
+        .topo {
+            background: linear-gradient(135deg, #2868ed, #4d3ee8);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
 
-    table {
-        width: 100%;
-        background: white;
-        border-collapse: collapse;
-    }
+        .topo h1 {
+            margin: 0 0 10px;
+            font-size: 38px;
+        }
 
-    th {
-        background: #176b87;
-        color: white;
-    }
+        .topo p {
+            margin: 0;
+            font-size: 17px;
+        }
 
-    th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
+        .cabecalho-reservas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 35px 0 20px;
+        }
 
-    .reservado {
-        color: red;
-        font-weight: bold;
-    }
-</style>
-```
+        .cabecalho-reservas h2 {
+            margin: 0;
+            font-size: 28px;
+        }
 
+        .total {
+            background: white;
+            color: #2868ed;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .botao {
+            display: inline-block;
+            background: #2868ed;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .botao:hover {
+            background: #1d55c9;
+        }
+
+        .reservas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            border-left: 6px solid #2868ed;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .modalidade {
+            display: inline-block;
+            background: #dceaff;
+            color: #2868ed;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 5px 0 20px;
+            font-size: 21px;
+        }
+
+        .informacao {
+            margin: 12px 0;
+            color: #405577;
+        }
+
+        .nenhuma {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #2868ed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 15px;
+            }
+
+            .topo {
+                padding: 30px 15px;
+            }
+
+            .topo h1 {
+                font-size: 28px;
+            }
+
+            .cabecalho-reservas {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .reservas {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-```
-<div class="topo">
-    <h2>ETE Porto Digital</h2>
-</div>
+    <div class="container">
 
-<h1>Horários da Quadra</h1>
+        <div class="topo">
+            <h1>🏟️ Horários da Quadra</h1>
+            <p>Confira os horários e modalidades reservadas</p>
+        </div>
 
-<p>Modalidades e horários reservados</p>
+        <div class="cabecalho-reservas">
+            <h2>📅 Reservas cadastradas</h2>
 
-<a href="/nova_reserva" class="botao">+ Nova Reserva</a>
-<div class="resumo">
-    
-    <strong>Total de reservas: 9</strong>
-</div>
+            <div class="total">
+                {{ reservas|length }} reservas
+            </div>
+        </div>
 
-<table>
+        <a href="/nova_reserva" class="botao">
+            + Nova Reserva
+        </a>
 
-    <tr>
-        <th>Nome/Turma</th>
-        <th>Modalidade</th>
-        <th>Horário</th>
-        <th>Telefone</th>
-        <th>Data</th>
-        <th>Status</th>
-    </tr>
+        <div class="reservas">
 
-    <tr>
-        <td>Matheus Alexandre 3A</td>
-        <td>Vôlei</td>
-        <td>13:00</td>
-        <td>(81) 90863532</td>
-        <td>15/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+            {% for reserva in reservas %}
 
-    <tr>
-        <td>Rhuan Matheus 3A</td>
-        <td>Futmesa</td>
-        <td>12:00</td>
-        <td>(81) 9086-84302</td>
-        <td>16/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+            <div class="card">
 
-     <tr>
-        <td>Israel Domingos 3A</td>
-        <td>Futmesa</td>
-        <td>12:00</td>
-        <td>(81) 94002-8922</td>
-        <td>16/09/2026</td>
-    </tr>
+                <div class="modalidade">
+                    {{ reserva[2] }}
+                </div>
 
-    <tr>
-        <td>David Adriel 3B</td>
-        <td>Futsal</td>
-        <td>12:30</td>
-        <td>(81) 94088-3452</td>
-        <td>16/09/2026</td>
-    </tr>
-    
+                <h3>{{ reserva[1] }}</h3>
 
-    <tr>
-        <td>Rubens Lopes 3B</td>
-        <td>Futsal</td>
-        <td>12:30</td>
-        <td>(81) 98088-3409</td>
-        <td>17/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+                <div class="informacao">
+                    📅 {{ reserva[5] }}/{{ reserva[6] }}/{{ reserva[7] }}
+                </div>
 
-    <tr>
-        <td>Richard Gomes 3C</td>
-        <td>Vôlei</td>
-        <td>14:00</td>
-        <td>(81) 98088-3009</td>
-        <td>17/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+                <div class="informacao">
+                    🕐
+                    {% if reserva[3] %}
+                        {{ reserva[3] }}
+                    {% else %}
+                        Horário não informado
+                    {% endif %}
+                </div>
 
-    <tr>
-        <td>João Gomes 3C</td>
-        <td>Vôlei</td>
-        <td>14:00</td>
-        <td>(81) 98078-3008</td>
-        <td>17/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+                <div class="informacao">
+                    📞
+                    {% if reserva[4] %}
+                        {{ reserva[4] }}
+                    {% else %}
+                        Telefone não informado
+                    {% endif %}
+                </div>
 
-    <tr>
-        <td>Esteves Jacinto 2C</td>
-        <td>Futmesa</td>
-        <td>15:00</td>
-        <td>(81) 90967-3088</td>
-        <td>17/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+            </div>
 
-    <tr>
-        <td>Marianna Zacarias 3A</td>
-        <td>Futmesa</td>
-        <td>15:00</td>
-        <td>(81) 903877-38450</td>
-        <td>17/09/2026</td>
-        <td class="reservado">Reservado</td>
-    </tr>
+            {% else %}
 
-</table>
+            <div class="nenhuma">
+                <h3>Nenhuma reserva cadastrada</h3>
+                <p>Cadastre a primeira reserva da quadra.</p>
+            </div>
 
+            {% endfor %}
+
+        </div>
+
+        <div class="links">
+            <a href="/reservas">Ver todas as reservas</a>
+        </div>
+
+    </div>
 
 </body>
+
 </html>

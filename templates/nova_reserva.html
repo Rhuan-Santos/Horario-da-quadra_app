@@ -1,15 +1,231 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nova Reserva</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #eaf2ff;
+            color: #142d55;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .topo {
+            background: linear-gradient(135deg, #2868ed, #4d3ee8);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .formulario {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd5e3;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .data {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 10px;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        button,
+        .voltar {
+            flex: 1;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        button {
+            border: none;
+            background: #2868ed;
+            color: white;
+        }
+
+        .voltar {
+            background: #eef2f7;
+            color: #405577;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .formulario {
+                padding: 20px;
+            }
+
+            .data {
+                grid-template-columns: 1fr;
+            }
+
+            .botoes {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Nova Reserva</h1>
+    <div class="container">
 
-    <p>Aqui será feito o cadastro da reserva.</p>
+        <div class="topo">
+            <h1>➕ Nova Reserva</h1>
+            <p>Preencha os dados da reserva</p>
+        </div>
+
+        <div class="formulario">
+
+            <form action="/nova_reserva" method="POST">
+
+                <div class="campo">
+                    <label for="nome_turma">Nome/Turma</label>
+
+                    <input
+                        type="text"
+                        id="nome_turma"
+                        name="nome_turma"
+                        maxlength="45"
+                        placeholder="Ex.: Rhuan Matheus 3A"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="modalidade">Modalidade</label>
+
+                    <select id="modalidade" name="modalidade" required>
+                        <option value="">Selecione uma modalidade</option>
+                        <option value="voley">Vôlei</option>
+                        <option value="futmesa">Futmesa</option>
+                        <option value="futsal">Futsal</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="horario">Horário</label>
+
+                    <input
+                        type="time"
+                        id="horario"
+                        name="horario"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="telefone">Telefone</label>
+
+                    <input
+                        type="tel"
+                        id="telefone"
+                        name="telefone"
+                        maxlength="14"
+                        placeholder="(81) 99999-9999"
+                    >
+                </div>
+
+                <label>Data da reserva</label>
+
+                <div class="data">
+
+                    <input
+                        type="number"
+                        name="dia"
+                        min="1"
+                        max="31"
+                        placeholder="Dia"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        name="mes"
+                        min="1"
+                        max="12"
+                        placeholder="Mês"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        name="ano"
+                        min="2026"
+                        max="2100"
+                        placeholder="Ano"
+                        required
+                    >
+
+                </div>
+
+                <div class="botoes">
+
+                    <a href="/" class="voltar">
+                        Voltar
+                    </a>
+
+                    <button type="submit">
+                        Salvar Reserva
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>

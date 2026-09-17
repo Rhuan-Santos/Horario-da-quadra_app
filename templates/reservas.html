@@ -1,15 +1,204 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Reservas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Todas as Reservas</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #eaf2ff;
+            color: #142d55;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .topo {
+            background: linear-gradient(135deg, #2868ed, #4d3ee8);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .acoes {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .botao {
+            background: #2868ed;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tabela-container {
+            background: white;
+            border-radius: 15px;
+            overflow-x: auto;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th {
+            background: #2868ed;
+            color: white;
+            padding: 15px;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #e1e6ef;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f5f8ff;
+        }
+
+        .editar {
+            color: #2868ed;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .vazio {
+            padding: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .acoes {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Reservas da Quadra</h1>
+    <div class="container">
 
-    <p>Aqui serão exibidas as reservas.</p>
+        <div class="topo">
+            <h1>📋 Reservas cadastradas</h1>
+            <p>Todos os horários registrados no sistema</p>
+        </div>
+
+        <div class="acoes">
+
+            <a href="/" class="botao">
+                ← Página inicial
+            </a>
+
+            <a href="/nova_reserva" class="botao">
+                + Nova Reserva
+            </a>
+
+        </div>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Nome/Turma</th>
+                        <th>Modalidade</th>
+                        <th>Horário</th>
+                        <th>Telefone</th>
+                        <th>Data</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for reserva in reservas %}
+
+                    <tr>
+
+                        <td>{{ reserva[1] }}</td>
+
+                        <td>{{ reserva[2] }}</td>
+
+                        <td>
+                            {% if reserva[3] %}
+                                {{ reserva[3] }}
+                            {% else %}
+                                Não informado
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if reserva[4] %}
+                                {{ reserva[4] }}
+                            {% else %}
+                                Não informado
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ reserva[5] }}/{{ reserva[6] }}/{{ reserva[7] }}
+                        </td>
+
+                        <td>
+                            <a
+                                href="/editar_reserva?id={{ reserva[0] }}"
+                                class="editar"
+                            >
+                                Editar
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="6" class="vazio">
+                            Nenhuma reserva cadastrada.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>

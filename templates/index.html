@@ -1,15 +1,184 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Reserva da Quadra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horários da Quadra</title>
+<style>
+    body {
+        font-family: Arial;
+        background: #eee;
+        padding: 30px;
+    }
+
+    h1, p {
+        text-align: center;
+    }
+
+    .topo {
+        background: #176b87;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .botao {
+        display: block;
+        width: 150px;
+        margin: 20px auto;
+        padding: 10px;
+        background: #176b87;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .resumo {
+        text-align: center;
+        margin: 20px;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        background: white;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #176b87;
+        color: white;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .reservado {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+```
+
 </head>
 
 <body>
 
-    <h1>Sistema de Horários da Quadra</h1>
+```
+<div class="topo">
+    <h2>ETE Porto Digital</h2>
+</div>
 
-    <p>Bem-vindo ao sistema de reservas.</p>
+<h1>Horários da Quadra</h1>
+
+<p>Modalidades e horários reservados</p>
+
+<a href="/nova_reserva" class="botao">+ Nova Reserva</a>
+<div class="resumo">
+    
+    <strong>Total de reservas: 9</strong>
+</div>
+
+<table>
+
+    <tr>
+        <th>Nome/Turma</th>
+        <th>Modalidade</th>
+        <th>Horário</th>
+        <th>Telefone</th>
+        <th>Data</th>
+        <th>Status</th>
+    </tr>
+
+    <tr>
+        <td>Matheus Alexandre 3A</td>
+        <td>Vôlei</td>
+        <td>13:00</td>
+        <td>(81) 90863532</td>
+        <td>15/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+    <tr>
+        <td>Rhuan Matheus 3A</td>
+        <td>Futmesa</td>
+        <td>12:00</td>
+        <td>(81) 9086-84302</td>
+        <td>16/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+     <tr>
+        <td>Israel Domingos 3A</td>
+        <td>Futmesa</td>
+        <td>12:00</td>
+        <td>(81) 94002-8922</td>
+        <td>16/09/2026</td>
+    </tr>
+
+    <tr>
+        <td>David Adriel 3B</td>
+        <td>Futsal</td>
+        <td>12:30</td>
+        <td>(81) 94088-3452</td>
+        <td>16/09/2026</td>
+    </tr>
+    
+
+    <tr>
+        <td>Rubens Lopes 3B</td>
+        <td>Futsal</td>
+        <td>12:30</td>
+        <td>(81) 98088-3409</td>
+        <td>17/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+    <tr>
+        <td>Richard Gomes 3C</td>
+        <td>Vôlei</td>
+        <td>14:00</td>
+        <td>(81) 98088-3009</td>
+        <td>17/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+    <tr>
+        <td>João Gomes 3C</td>
+        <td>Vôlei</td>
+        <td>14:00</td>
+        <td>(81) 98078-3008</td>
+        <td>17/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+    <tr>
+        <td>Esteves Jacinto 2C</td>
+        <td>Futmesa</td>
+        <td>15:00</td>
+        <td>(81) 90967-3088</td>
+        <td>17/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+    <tr>
+        <td>Marianna Zacarias 3A</td>
+        <td>Futmesa</td>
+        <td>15:00</td>
+        <td>(81) 903877-38450</td>
+        <td>17/09/2026</td>
+        <td class="reservado">Reservado</td>
+    </tr>
+
+</table>
+
 
 </body>
 </html>

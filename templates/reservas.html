@@ -48,6 +48,9 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
         }
 
         .tabela-container {
@@ -83,11 +86,29 @@
             color: #2868ed;
             font-weight: bold;
             text-decoration: none;
+            margin-right: 12px;
+        }
+
+        .cancelar {
+            color: #d62828;
+            font-weight: bold;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
         }
 
         .vazio {
             padding: 30px;
             text-align: center;
+        }
+
+        .acoes-reserva {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
         }
 
         @media (max-width: 600px) {
@@ -100,6 +121,15 @@
                 align-items: flex-start;
                 gap: 15px;
             }
+
+            .acoes-reserva {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .editar {
+                margin-right: 0;
+            }
         }
     </style>
 </head>
@@ -109,14 +139,14 @@
     <div class="container">
 
         <div class="topo">
-            <h1>📋 Reservas cadastradas</h1>
+            <h1>Reservas cadastradas</h1>
             <p>Todos os horários registrados no sistema</p>
         </div>
 
         <div class="acoes">
 
             <a href="/" class="botao">
-                ← Página inicial
+                Página inicial
             </a>
 
             <a href="/nova_reserva" class="botao">
@@ -171,12 +201,39 @@
                         </td>
 
                         <td>
-                            <a
-                                href="/editar_reserva?id={{ reserva[0] }}"
-                                class="editar"
-                            >
-                                Editar
-                            </a>
+
+                            <div class="acoes-reserva">
+
+                                <a
+                                    href="/editar_reserva?id={{ reserva[0] }}"
+                                    class="editar"
+                                >
+                                    Editar
+                                </a>
+
+                                <form
+                                    action="/cancelar_reserva"
+                                    method="post"
+                                    onsubmit="return confirm('Tem certeza que deseja cancelar esta reserva?');"
+                                >
+
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value="{{ reserva[0] }}"
+                                    >
+
+                                    <button
+                                        type="submit"
+                                        class="cancelar"
+                                    >
+                                        Cancelar
+                                    </button>
+
+                                </form>
+
+                            </div>
+
                         </td>
 
                     </tr>

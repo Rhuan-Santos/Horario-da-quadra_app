@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS horarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Nome/turma" VARCHAR(45) NOT NULL,
+    "Modalidade" VARCHAR(10) NOT NULL,
+    "Horário" VARCHAR(7) NOT NULL,
+    telefone VARCHAR(14),
+    Dia INTEGER NOT NULL,
+    "mês" INTEGER NOT NULL,
+    ano INTEGER NOT NULL
+);
+
+INSERT INTO horarios
+("Nome/turma", "Modalidade", "Horário", telefone, Dia, "mês", ano)
+VALUES
+('Matheus Alexandre 3A', 'voley', '13:00', '', 15, 9, 2026);
+
+INSERT INTO horarios
+("Nome/turma", "Modalidade", "Horário", telefone, Dia, "mês", ano)
+VALUES
+('Rhuan Matheus 3A', 'futmesa', '12:00', '', 16, 9, 2026);
